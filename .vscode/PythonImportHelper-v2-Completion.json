@@ -1,0 +1,158 @@
+[
+    {
+        "label": "BaseModel",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "Field",
+        "importPath": "pydantic",
+        "description": "pydantic",
+        "isExtraImport": true,
+        "detail": "pydantic",
+        "documentation": {}
+    },
+    {
+        "label": "Optional",
+        "importPath": "typing",
+        "description": "typing",
+        "isExtraImport": true,
+        "detail": "typing",
+        "documentation": {}
+    },
+    {
+        "label": "FastAPI",
+        "importPath": "fastapi",
+        "description": "fastapi",
+        "isExtraImport": true,
+        "detail": "fastapi",
+        "documentation": {}
+    },
+    {
+        "label": "JSONResponse",
+        "importPath": "fastapi.responses",
+        "description": "fastapi.responses",
+        "isExtraImport": true,
+        "detail": "fastapi.responses",
+        "documentation": {}
+    },
+    {
+        "label": "Movie",
+        "importPath": "shemas.movies",
+        "description": "shemas.movies",
+        "isExtraImport": true,
+        "detail": "shemas.movies",
+        "documentation": {}
+    },
+    {
+        "label": "Movie",
+        "kind": 6,
+        "importPath": "shemas.movies",
+        "description": "shemas.movies",
+        "peekOfCode": "class Movie(BaseModel):\n    id: Optional[int] = None\n    nombre: str = Field(min_length=5,max_length=30)\n    año:int = Field(le=2024)\n    rating: float = Field(ge=1,le=10)\n    categoria: str = Field(min_length=5,max_length=15)\n    class Config:\n        json_schema_extra = {\n\t\t\t\t\t\"example\": {\n\t\t\t\t\t\t\"id\": 1,",
+        "detail": "shemas.movies",
+        "documentation": {}
+    },
+    {
+        "label": "get",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def get():\n    return \"Hola mundo XD\"\n# metodo get \n@app.get('/movie',tags=['peliculas'])\ndef get_movies():    \n    return peliculas\n# metodo get por id\n@app.get('/movie/{id}',tags=['peliculas'])\ndef get_movie(id: int):\n    for pelicula in peliculas:",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "get_movies",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def get_movies():    \n    return peliculas\n# metodo get por id\n@app.get('/movie/{id}',tags=['peliculas'])\ndef get_movie(id: int):\n    for pelicula in peliculas:\n        if pelicula[\"id\"] == id:\n            return pelicula\n    return JSONResponse(status_code=200,content={\"message\": 'no se encontro el recurso'})\n# metodo get por categoria",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "get_movie",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def get_movie(id: int):\n    for pelicula in peliculas:\n        if pelicula[\"id\"] == id:\n            return pelicula\n    return JSONResponse(status_code=200,content={\"message\": 'no se encontro el recurso'})\n# metodo get por categoria\n@app.get('/movie/',tags=['peliculas por categoria'])\ndef get_movie_by_category(categoria: str):\n    format_movie = categoria.capitalize()\n    for pelicula in peliculas:",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "get_movie_by_category",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def get_movie_by_category(categoria: str):\n    format_movie = categoria.capitalize()\n    for pelicula in peliculas:\n        if pelicula[\"categoria\"] == format_movie:\n            return pelicula\n    return JSONResponse(status_code=200, content={\"message\": 'No se encontraron películas para la categoría proporcionada.'})\n# metodo post \n@app.post('/movies',tags=['registro de peliculas'],status_code=200)\ndef create_movie(movie: Movie):\n    peliculas.append(movie)",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "create_movie",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def create_movie(movie: Movie):\n    peliculas.append(movie)\n    return JSONResponse(status_code=201,content={\"message\":'registrado con exito'})\n# metodo put \n@app.put('/movie/{id}',tags=['peliculas'],status_code=200)\ndef update_movie(id:int, movie:str):\n    return JSONResponse(status_code=200,content={\"message\":'nose encontro el recurso'})\n# metodo delete \n@app.delete('/movie/{id}',tags=['peliculas'],status_code=200)\ndef delete_movie():    ",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "update_movie",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def update_movie(id:int, movie:str):\n    return JSONResponse(status_code=200,content={\"message\":'nose encontro el recurso'})\n# metodo delete \n@app.delete('/movie/{id}',tags=['peliculas'],status_code=200)\ndef delete_movie():    \n    return \"peliculas\"",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "delete_movie",
+        "kind": 2,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "def delete_movie():    \n    return \"peliculas\"",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "app",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "app = FastAPI()\napp.title = 'practica con fastapi'\napp.version = \"0.0.1\"\npeliculas = [{\n    \"id\": 1,\n    \"nombre\": \"Soul\",\n    \"año\": 2020,\n    \"rating\": 8.1,\n    \"categoria\": \"Animación\"\n  },",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "app.title",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "app.title = 'practica con fastapi'\napp.version = \"0.0.1\"\npeliculas = [{\n    \"id\": 1,\n    \"nombre\": \"Soul\",\n    \"año\": 2020,\n    \"rating\": 8.1,\n    \"categoria\": \"Animación\"\n  },\n  {",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "app.version",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "app.version = \"0.0.1\"\npeliculas = [{\n    \"id\": 1,\n    \"nombre\": \"Soul\",\n    \"año\": 2020,\n    \"rating\": 8.1,\n    \"categoria\": \"Animación\"\n  },\n  {\n    \"id\": 2,",
+        "detail": "main",
+        "documentation": {}
+    },
+    {
+        "label": "peliculas",
+        "kind": 5,
+        "importPath": "main",
+        "description": "main",
+        "peekOfCode": "peliculas = [{\n    \"id\": 1,\n    \"nombre\": \"Soul\",\n    \"año\": 2020,\n    \"rating\": 8.1,\n    \"categoria\": \"Animación\"\n  },\n  {\n    \"id\": 2,\n    \"nombre\": \"Nomadland\",",
+        "detail": "main",
+        "documentation": {}
+    }
+]
