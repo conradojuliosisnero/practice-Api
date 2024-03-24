@@ -113,7 +113,6 @@ peliculas = [{
   }
 ]
 
-
 # ruta principal 
 @app.get('/',tags=['Home'])
 def get():
